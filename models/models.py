@@ -20,3 +20,11 @@ class Lead(Base):
     sales_associate = relationship('SalesAssociate', back_populates='leads')
     converted_customer_id = Column(Integer, ForeignKey('converted_customer.id'))
     converted_customer = relationship('ConvertedCustomer', back_populates='leads')
+
+class ConvertedCustomer(Base):
+    __tablename__ = 'converted_customer'
+    id = Column(Integer, primary_key=True)
+    first_name = Column(String)
+    last_name = Column(String)
+    leads = relationship('Lead', back_populates='converted_customer')
+    referred_leads_count = Column(Integer, default=0)
