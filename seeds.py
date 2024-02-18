@@ -35,3 +35,16 @@ def seed_data():
 
     # Dynamically update referred_leads_count for customers
     update_referred_leads_count()
+
+def update_referred_leads_count():
+    # Fetch all converted customers
+    converted_customers = session.query(ConvertedCustomer).all()
+
+    # Update referred_leads_count based on the leads associated with each customer
+    for customer in converted_customers:
+        customer.referred_leads_count = len(customer.leads)
+        
+    session.commit()
+
+if __name__ == '__main__':
+    seed_data()
