@@ -17,3 +17,21 @@ def list_leads():
             print(f"Lead ID: {lead.id}, Customer: {lead.customer_name}")
     else:
         print(f"No leads found for Sales Associate {sales_associate_name}")
+
+def list_referring_customers():
+    converted_customer_name = input("Enter the Converted Customer's name: ")
+    referring_customers = get_referring_customers(converted_customer_name)
+
+    if referring_customers:
+        print(f"Referring Customers for {converted_customer_name}:")
+        for customer in referring_customers:
+            print(f"Customer ID: {customer.id}, Name: {customer.first_name} {customer.last_name}")
+            leads = get_leads_by_converted_customer(customer)
+            if leads:
+                print("Associated Leads:")
+                for lead in leads:
+                    print(f"  Lead ID: {lead.id}, Customer: {lead.customer_name}")
+            else:
+                print("No associated leads.")
+    else:
+        print(f"No referring customers found for Converted Customer {converted_customer_name}")
