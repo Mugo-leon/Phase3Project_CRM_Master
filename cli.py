@@ -54,3 +54,19 @@ def get_leads_by_sales_associate(sales_associate_name):
         .all()
     )
     return leads
+
+def get_referring_customers(converted_customer_name):
+    referring_customers = (
+        session.query(ConvertedCustomer)
+        .filter(ConvertedCustomer.first_name == converted_customer_name)
+        .all()
+    )
+    return referring_customers
+
+def get_leads_by_converted_customer(converted_customer):
+    leads = (
+        session.query(Lead)
+        .filter(Lead.converted_customer == converted_customer)
+        .all()
+    )
+    return leads
