@@ -13,7 +13,6 @@ CRM Master is a Command-Line Interface (CLI) tool designed to address these chal
 - Managers can track leads assigned to sales representatives.
 - Managers can identify referrals from converted customers.
 - A reward system is implemented for converted customers who refer 3 or more leads.
-- Leads can be reassigned to new sales representatives when needed.
 
 ## Minimum Viable Product (MVP)
 
