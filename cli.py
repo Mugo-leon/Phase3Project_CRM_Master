@@ -35,3 +35,13 @@ def list_referring_customers():
                 print("No associated leads.")
     else:
         print(f"No referring customers found for Converted Customer {converted_customer_name}")
+
+def list_discount_eligible_customers():
+    eligible_customers = get_discount_eligible_customers()
+
+    if eligible_customers:
+        print("Discount Eligible Customers:")
+        for customer in eligible_customers:
+            print(f"{customer.first_name} {customer.last_name} is eligible for 20% off their next purchase.")
+    else:
+        print("No eligible customers found for the discount.")
