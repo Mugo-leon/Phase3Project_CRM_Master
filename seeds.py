@@ -27,10 +27,10 @@ def seed_data():
     session.commit()
 
     # Create leads and associate with converted customers and sales associates
-    lead1 = Lead(first_name='Ruth', last_name='Mutonyi', sales_associate=sales_assoc1, converted_customer=converted_cust1)
-    lead2 = Lead(first_name='Kennedy', last_name='Sigei', sales_associate=sales_assoc2, converted_customer=converted_cust1)
-    lead3 = Lead(first_name='Alice', last_name='Mwangi', sales_associate=sales_assoc1, converted_customer=converted_cust2)
-    lead4 = Lead(first_name='Cecily', last_name='Kariuki', sales_associate=sales_assoc2, converted_customer=converted_cust1)
+    lead1 = Lead(customer_name='Ruth Mutonyi',first_name='Ruth', last_name='Mutonyi', sales_associate=sales_assoc1, converted_customer=converted_cust1)
+    lead2 = Lead(customer_name='Kennedy Sigei',first_name='Kennedy', last_name='Sigei', sales_associate=sales_assoc2, converted_customer=converted_cust1)
+    lead3 = Lead(customer_name='Alice Mwangi',first_name='Alice', last_name='Mwangi', sales_associate=sales_assoc1, converted_customer=converted_cust2)
+    lead4 = Lead(customer_name='Cecily Kariuki',first_name='Cecily', last_name='Kariuki', sales_associate=sales_assoc2, converted_customer=converted_cust1)
     session.add_all([lead1, lead2, lead3, lead4])
 
     # Dynamically update referred_leads_count for customers
