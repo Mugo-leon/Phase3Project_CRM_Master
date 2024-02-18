@@ -45,3 +45,12 @@ def list_discount_eligible_customers():
             print(f"{customer.first_name} {customer.last_name} is eligible for 20% off their next purchase.")
     else:
         print("No eligible customers found for the discount.")
+
+def get_leads_by_sales_associate(sales_associate_name):
+    leads = (
+        session.query(Lead)
+        .join(SalesAssociate)
+        .filter(SalesAssociate.first_name == sales_associate_name)
+        .all()
+    )
+    return leads
