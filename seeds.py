@@ -15,22 +15,22 @@ def seed_data():
         return
 
     # Create sales associates
-    sales_assoc1 = SalesAssociate(first_name='John', last_name='Doe')
-    sales_assoc2 = SalesAssociate(first_name='Jane', last_name='Smith')
+    sales_assoc1 = SalesAssociate(first_name='Leon', last_name='Muriuki')
+    sales_assoc2 = SalesAssociate(first_name='Olive', last_name='Kirigo')
     session.add_all([sales_assoc1, sales_assoc2])
     session.commit()
 
     # Create converted customers
-    converted_cust1 = ConvertedCustomer(first_name='Alice', last_name='Johnson', referred_leads_count=0)
-    converted_cust2 = ConvertedCustomer(first_name='Bob', last_name='Williams', referred_leads_count=0)
+    converted_cust1 = ConvertedCustomer(first_name='Loice', last_name='Njambi', referred_leads_count=0)
+    converted_cust2 = ConvertedCustomer(first_name='Wanjiru', last_name='Ndegwa', referred_leads_count=0)
     session.add_all([converted_cust1, converted_cust2])
     session.commit()
 
     # Create leads and associate with converted customers and sales associates
-    lead1 = Lead(customer_name='Lead 1', first_name='Lead1FirstName', last_name='Lead1LastName', sales_associate=sales_assoc1, converted_customer=converted_cust1)
-    lead2 = Lead(customer_name='Lead 2', first_name='Lead2FirstName', last_name='Lead2LastName', sales_associate=sales_assoc2, converted_customer=converted_cust1)
-    lead3 = Lead(customer_name='Lead 3', first_name='Lead3FirstName', last_name='Lead3LastName', sales_associate=sales_assoc1, converted_customer=converted_cust2)
-    lead4 = Lead(customer_name='Lead 4', first_name='Lead4FirstName', last_name='Lead4LastName', sales_associate=sales_assoc2, converted_customer=converted_cust1)
+    lead1 = Lead(first_name='Ruth', last_name='Mutonyi', sales_associate=sales_assoc1, converted_customer=converted_cust1)
+    lead2 = Lead(first_name='Kennedy', last_name='Sigei', sales_associate=sales_assoc2, converted_customer=converted_cust1)
+    lead3 = Lead(first_name='Alice', last_name='Mwangi', sales_associate=sales_assoc1, converted_customer=converted_cust2)
+    lead4 = Lead(first_name='Cecily', last_name='Kariuki', sales_associate=sales_assoc2, converted_customer=converted_cust1)
     session.add_all([lead1, lead2, lead3, lead4])
 
     # Dynamically update referred_leads_count for customers
