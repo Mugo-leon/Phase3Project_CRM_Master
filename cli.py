@@ -70,3 +70,11 @@ def get_leads_by_converted_customer(converted_customer):
         .all()
     )
     return leads
+
+def get_discount_eligible_customers():
+    eligible_customers = (
+        session.query(ConvertedCustomer)
+        .filter(ConvertedCustomer.referred_leads_count >= 3)
+        .all()
+    )
+    return eligible_customers
