@@ -21,7 +21,7 @@ def seed_data():
     session.commit()
 
     # Create converted customers
-    converted_cust1 = ConvertedCustomer(first_name='Loice', last_name='Njambi', referred_leads_count=0)
+    converted_cust1 = ConvertedCustomer(first_name='Njeri', last_name='Njambi', referred_leads_count=0)
     converted_cust2 = ConvertedCustomer(first_name='Wanjiru', last_name='Ndegwa', referred_leads_count=0)
     session.add_all([converted_cust1, converted_cust2])
     session.commit()

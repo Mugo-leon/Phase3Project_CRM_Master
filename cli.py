@@ -19,7 +19,7 @@ def list_leads():
         print(f"No leads found for Sales Associate {sales_associate_name}")
 
 def list_referring_customers():
-    converted_customer_name = input("Enter the Converted Customer's name: ")
+    converted_customer_name = input("Enter the Converted Customer's first name: ")
     referring_customers = get_referring_customers(converted_customer_name)
 
     if referring_customers:
@@ -78,3 +78,74 @@ def get_discount_eligible_customers():
         .all()
     )
     return eligible_customers
+
+def create_lead():
+    customer_name = input("Enter customer name: ")
+    first_name = input("Enter lead's first name: ")
+    last_name = input("Enter lead's last name: ")
+    sales_associate_id = int(input("Enter Sales Associate ID for assignment: "))
+
+    lead = Lead(customer_name=customer_name, first_name=first_name, last_name=last_name, sales_associate_id=sales_associate_id)
+    session.add(lead)
+    session.commit()
+    print("Lead created successfully.")
+
+def create_sales_associate():
+    first_name = input("Enter Sales Associate's first name: ")
+    last_name = input("Enter Sales Associate's last name: ")
+
+    sales_associate = SalesAssociate(first_name=first_name, last_name=last_name)
+    session.add(sales_associate)
+    session.commit()
+    print("Sales Associate created successfully.")
+
+def create_converted_customer():
+    first_name = input("Enter Converted Customer's first name: ")
+    last_name = input("Enter Converted Customer's last name: ")
+    lead_id = int(input("Enter Lead ID for referral: "))
+
+    converted_customer = ConvertedCustomer(first_name=first_name, last_name=last_name, referred_leads_count=0)
+    
+    # Update referral count for the converted customer
+    lead = session.query(Lead).get(lead_id)
+    if lead:
+        converted_customer.leads.append(lead)
+        lead.converted_customer = converted_customer
+        converted_customer.referred_leads_count += 1
+    
+        session.add_all([converted_customer, lead])
+        session.commit()
+        print("Converted Customer created successfully.")
+    else:
+        print(f"Lead with ID {lead_id} not found.")
+
+def change_sales_associate_name():
+    sales_associate_id = int(input("Enter Sales Associate ID: "))
+    new_first_name = input("Enter new first name: ")
+    new_last_name = input("Enter new last name: ")
+
+    sales_associate = session.query(SalesAssociate).get(sales_associate_id)
+    
+    if sales_associate:
+        sales_associate.first_name = new_first_name
+        sales_associate.last_name = new_last_name
+        session.commit()
+        print(f"Sales Associate with ID {sales_associate_id} updated successfully.")
+    else:
+        print(f"Sales Associate with ID {sales_associate_id} not found.")
+
+def delete_lead():
+    lead_id = int(input("Enter Lead ID to delete: "))
+    lead = session.query(Lead).get(lead_id)
+
+    if lead:
+        converted_customer = lead.converted_customer
+        if converted_customer:
+            converted_customer.referred_leads_count -= 1
+            session.delete(lead)
+            session.commit()
+            print(f"Lead with ID {lead_id} deleted successfully. Referral count reduced for Converted Customer.")
+        else:
+            print(f"Lead with ID {lead_id} is not associated with any Converted Customer.")
+    else:
+        print(f"Lead with ID {lead_id} not found.")
