@@ -2,11 +2,11 @@
 
 ## Problem Statement
 
-Managing leads and sales representatives efficiently is crucial for a company's success. Without a proper system, leads may be forgotten, and sales representatives might face challenges in identifying their assigned prospects. This can lead to confusion and competition among sales teams.
+Managing leads and sales representatives efficiently is crucial for a company's success. Without a proper system, leads may be forgotten, and sales representatives might face challenges in identifying their assigned prospects. This can lead to confusion and unhealthy competition among sales associates. Companies also need to recognize referrers so that they know who to reward to ensure steady supply of leads.
 
 ## Solution
 
-CRM Master is a Command-Line Interface (CLI) tool designed to address these challenges. It enables sales representatives and managers to track leads, associate them with specific sales representatives, and reward converted customers who refer leads.
+CRM Master is a Command-Line Interface (CLI) tool designed to address these challenges. It enables sales representatives and managers to track leads, associate them with specific sales representatives, and reward converted customers who refer leads. The CLI will also allow managers to replace sales associates in the database in case the previous ones leave the company. The CLI will also allow managers to delete leads not worthy of further pursuit on the recommendation of the sales associates. 
 
 ## Key Features
 
@@ -19,6 +19,10 @@ CRM Master is a Command-Line Interface (CLI) tool designed to address these chal
 - Managers can view leads assigned to each sales representative.
 - Managers can identify referrals from converted customers.
 - Managers can see which converted customers are eligible for a 20% discount.
+- Managers can add a new sales associate
+- Managers can add a lead and the converted customer who referred the lead
+- Managers can change names of sales associates
+- Managers can delete leads that sales associates feel are lost leads
 
 ## Project Structure
 
